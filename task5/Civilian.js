@@ -1,10 +1,8 @@
-import Car from './Car';
+import Car from './Car.js';
 
-class Civilian extends Car {
-    constructor() {
-
+export default class Civilian extends Car {
+    constructor(name) {
+        super(2, 2, 2, 4, name);
+        this.type = 'Civilian';
     }
 };
-
-const civilian = new Civilian();
-console.log(civilian);
