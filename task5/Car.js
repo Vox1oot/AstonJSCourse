@@ -1,4 +1,13 @@
+export const DEFAULT_PROPERTIES = {
+    FUEL: 5,
+    TRACKLENGTH: 200,
+    SPEED: 10,
+    DURABILITY: 100,
+}
+
 export default class Car {
+    availablePoints = 2;
+
     constructor(
         fuel = 0,
         lowFuelConsumption = 0,
@@ -11,20 +20,43 @@ export default class Car {
             this.durability = durability;
             this.speed = speed;
             this.name = name;
-            this.availablePoints = 2;
-            this.defaultFuel = 5;
-            this.totalFuel = this.defaultFuel + this.fuel;
         }
+    
+    get totalFuel() {
+        return DEFAULT_PROPERTIES.FUEL + this.fuel;
+    }
+
+    get powerReserve() {
+        return this.totalFuel * 
+            DEFAULT_PROPERTIES.TRACKLENGTH +
+            this.totalFuel * 
+            0,1 * 
+            DEFAULT_PROPERTIES.TRACKLENGTH * 
+            this.lowFuelConsumption;
+    };
+
+    get totalSpeed() {
+        return DEFAULT_PROPERTIES.SPEED +
+            this.speed *
+            0.05 *
+            DEFAULT_PROPERTIES.SPEED;
+    };
+
+    get totalDurability() {
+        return DEFAULT_PROPERTIES.DURABILITY +
+            this.durability *
+            0.01 *
+            100;
+    };
         
     showProps() {
         console.log(
-            `Автомобиль имеет следующие свойства:\n\n` +
-            `defaultFuel: ${this.defaultFuel}\n` +
+            `Ваш автомобиль ${this.name} имеет следующие свойства:\n` +
             `fuel: ${this.fuel}\n` +
             `lowFuelConsumption: ${this.lowFuelConsumption}\n` +
             `durability: ${this.durability}\n` +
-            `speed: ${this.speed}\n\n` +
-            `Доступно для улучшений: ${this.availablePoints}`
+            `speed: ${this.speed}\n` +
+            `Доступно для улучшений: ${this.availablePoints}\n`
         );
     }
 

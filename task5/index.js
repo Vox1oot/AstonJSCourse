@@ -2,15 +2,15 @@ import Civilian from './Civilian.js';
 import Sport from './Sport.js';
 import Military from './Military.js';
 import Enemies from './Enemies.js';
+import compare from './compare.js';
 
+// создаем новый автомобиль для игрока
 const civilian = new Civilian('LADA');
-const sport = new Sport('Maseratti');
+// проиводим апргрейд автомобиля
+civilian.upgrade('fuel').upgrade('speed');
 
-const enemies = new Enemies(2);
+// создаем автомобили врагов
+const enemies = new Enemies(1);
 
-civilian.upgrade('fuel');
-
-console.log(civilian);
-console.log(sport);
-
-console.log(enemies);
+//сравниваем автомбили по характеристикам
+compare(civilian, enemies);
