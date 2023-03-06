@@ -5,6 +5,14 @@ const deepCopyObject = (obj) => {
     Object.entries(obj).forEach(([key, value]) => {
         if (!(value instanceof Object)) {
             copyObject[key] = value;
+        } else if (Array.isArray(value)) {
+            const arr = [];
+
+            value.forEach((item, index) => {
+                arr[index] = deepCopyObject(item);
+            });
+            copyObject[key] = arr;
+            return copyObject;
         } else {
             return copyObject[key] = { ...deepCopyObject(value) };
         }
@@ -59,6 +67,7 @@ const getUniqArray = (arr) => {
     if (!isIntegers) {
         throw new Error('В getUniqArray был передан невалидный параметр. Аргумент arr должен быть массивом чисел');
     }
-    const set = new Set(arr);
-    return Array.from(set);
+
+    return Array.from(new Set(arr));
 };
+
