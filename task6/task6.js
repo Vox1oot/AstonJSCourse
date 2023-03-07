@@ -46,12 +46,12 @@ const renderPaginator = (totalCount, limit, currentPage) => {
         const pageNumber = (event.target.value);
         currentPage = pageNumber;
 
+        const prevActiveElement = document.querySelector('li.paginator__item_active');
+        prevActiveElement.classList.replace('paginator__item_active', 'paginator__item');
+
         if (currentPage === pageNumber) {
             const liElement = event.target;
             liElement.classList.add('paginator__item_active');
-
-            const prevActiveElement = document.querySelector('li.paginator__item_active');
-            prevActiveElement.classList.replace('paginator__item_active', 'paginator__item');
         }
 
         const { posts } = await getPosts(pageNumber);
