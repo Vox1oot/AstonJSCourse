@@ -37,13 +37,17 @@ const renderPaginator = (totalCount, limit, currentPage) => {
             liElement.classList.add('paginator__item_active');
         } 
         liElement.classList.add('paginator__item');
-        liElement.value = i;
+        liElement.dataset.value = i;
         liElement.innerText = i;
         ulElement.appendChild(liElement);
     }
 
     ulElement.addEventListener('click', async (event) => {
-        const pageNumber = (event.target.value);
+        if (!event.target.closest('li.paginator__item')) {
+            return;
+        }
+
+        const pageNumber = (event.target.dataset.value);
         currentPage = pageNumber;
 
         const prevActiveElement = document.querySelector('li.paginator__item_active');
